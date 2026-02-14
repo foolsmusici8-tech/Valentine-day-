@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu Sayang 💖</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ff9a9e, #fecfef);
+    font-family: 'Segoe UI', cursive;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 80px;
+    font-size: 42px;
+    color: white;
+    text-shadow: 0 0 15px #ff4b5c;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff4b5c; }
+    to { text-shadow: 0 0 25px #fff; }
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    background-color: #ff4b5c;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: 0.3s;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #ff1e40;
+    transform: scale(1.1);
+}
+
+#pesan {
+    margin-top: 30px;
+    font-size: 24px;
+    color: white;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 1s ease;
+}
+
+#pesan.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.nama {
+    font-size: 30px;
+    color: yellow;
+    margin-top: 20px;
+    animation: fadeIn 3s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Animasi Hati */
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    transform: rotate(45deg);
+    animation: float 6s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
+
+@keyframes float {
+    0% { bottom: -10%; opacity: 1; }
+    100% { bottom: 110%; opacity: 0; transform: translateX(100px) rotate(45deg); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Happy Valentine 💖</h1>
+
+<button onclick="tampilkanPesan()">Klik Aku Sayang 💕</button>
+<button onclick="toggleMusik()">Pause / Play 🎵</button>
+
+<div id="pesan">
+    Selamat Hari Valentine sayanggg 🥰  
+    Semoga hubungan kita selalu panjang tanpa hadangan 💞  
+    Aku bersyukur banget bisa ketemu sama kamu 💖
+    <div class="nama">I Love You 💗</div>
+</div>
+
+<audio id="musik" src="SnapTik.Net_7537830933894794501.mp3" loop></audio>
+
+<script>
+const musik = document.getElementById("musik");
+
+function tampilkanPesan() {
+    document.getElementById("pesan").classList.add("show");
+
+    musik.volume = 0;
+    musik.play();
+
+    let fade = setInterval(() => {
+        if (musik.volume < 1) {
+            musik.volume += 0.05;
+        } else {
+            clearInterval(fade);
+        }
+    }, 200);
+}
+
+function toggleMusik() {
+    if (musik.paused) {
+        musik.play();
+    } else {
+        musik.pause();
+    }
+}
+
+function buatHati() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(buatHati, 300);
+</script>
+
+</body>
+</html>
